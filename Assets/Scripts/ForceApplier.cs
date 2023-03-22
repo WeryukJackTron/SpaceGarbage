@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class ForceApplier : MonoBehaviour
 {
+    public Transform Center;
     public float StrongForce = 2.0f;
     public float WeakForce = 1.0f;
 
@@ -13,7 +14,7 @@ public class ForceApplier : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector2 pos = transform.position;
+        Vector2 pos = Center.position;
         foreach (Rigidbody2D rb in mInWeakField)
         {
             Vector2 dir = (pos - rb.position).normalized;
@@ -50,12 +51,6 @@ public class ForceApplier : MonoBehaviour
         }
         else
             mInWeakField.Remove(rb);
-    }
-
-    float SquareDistance(Vector2 v0, Vector2 v1)
-    {
-        Vector2 temp = v0 - v1;        
-        return temp.x * temp.x + temp.y * temp.y;
     }
 
 }
