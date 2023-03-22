@@ -5,8 +5,6 @@ using UnityEngine.UIElements;
 
 public class ForceApplier : MonoBehaviour
 {
-    public Collider2D StrongField;
-    public Collider2D WeakField;
     public float StrongForce = 2.0f;
     public float WeakForce = 1.0f;
 
@@ -18,14 +16,12 @@ public class ForceApplier : MonoBehaviour
         Vector2 pos = transform.position;
         foreach (Rigidbody2D rb in mInWeakField)
         {
-            if(rb == null) continue;//Unity complains that there is no Rigidbody2D when I touch object
             Vector2 dir = (pos - rb.position).normalized;
             rb.AddForce(dir * WeakForce);
         }
 
         foreach(Rigidbody2D rb in mInStrongField)
         {
-            if (rb == null) continue;//Unity complains that there is no Rigidbody2D when I touch object
             Vector2 dir = (pos - rb.position).normalized;
             rb.AddForce(dir *  StrongForce);
         }
